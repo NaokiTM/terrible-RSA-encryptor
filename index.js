@@ -50,13 +50,14 @@ function generateKeys() {
     const eRandomIndex = Math.floor(Math.random() * eval.length) //gets a random index from the length of the array
     const e = eval[eRandomIndex] //selects the value from the index
 
-    for (let i= 0;i <= 100; i++ ) { //candidates for d
+    for (let i= 0;i <= 10000; i++ ) { //candidates for d (the value of i must be bigger than 100 for the modulo of r to work, otherwise there are not enough candidates)
         if ((i * e) % r == 1) {
-         dval.push(i)
+            // console.log("pushing",i,"to dval")
+            dval.push(i)
         }
     }
 
-    const dRandomIndex = Math.floor(Math.random() * eval.length)
+    const dRandomIndex = Math.floor(Math.random() * dval.length)
     const d = dval[dRandomIndex]
 
     const publickey = [e, n] 
@@ -101,9 +102,3 @@ function encrypt() {
 function decrypt() {
 
 }
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a110e8d0debfd2893812509b72e5d26c6d86ee90
