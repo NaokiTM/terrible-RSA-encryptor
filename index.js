@@ -1,5 +1,6 @@
 function generateKeys() { 
     //generates random primes to use as p and q:
+    console.log('generate keys')
     const range = [1, 100];
     const getPrimes = (min, max) => {
     const result = Array(max + 1)
@@ -101,5 +102,8 @@ function decrypt() {
 
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a110e8d0debfd2893812509b72e5d26c6d86ee90
