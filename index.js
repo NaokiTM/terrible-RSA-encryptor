@@ -61,14 +61,14 @@ function generateKeys() {
     const publickey = [e, n] 
     const privatekey = [d, n]
     
-    document.getElementById("text1").innerHTML = "value of p = " & p
-    document.getElementById("text2").innerHTML = "value of q = " & q
-    document.getElementById("text3").innerHTML = "value of n = " & n & "(value of n = p*q"
-    document.getElementById("text4").innerHTML = "value of r = " & r & "(value of r = (p-1) * (q-1)"
-    document.getElementById("text5").innerHTML = "value of e = " & e & "(e must be 1 < e < r and e and r are coprime"
-    document.getElementById("text6").innerHTML = "value of d = " & d & "(d must follow (d * e) % r = 1"
-    document.getElementById("text7").innerHTML = "public key = " & publickey & "(public key = [e,n]"
-    document.getElementById("text8").innerHTML = "private key = " & privatekey & "(private key = [d,n]"
+    document.getElementById("text1").innerHTML = "value of p = " + p
+    document.getElementById("text2").innerHTML = "value of q = " + q
+    document.getElementById("text3").innerHTML = "value of n = " + n + "(value of n = p*q"
+    document.getElementById("text4").innerHTML = "value of r = " + r + "(value of r = (p-1) * (q-1)"
+    document.getElementById("text5").innerHTML = "value of e = " + e + "(e must be 1 < e < r and e and r are coprime"
+    document.getElementById("text6").innerHTML = "value of d = " + d + "(d must follow (d * e) % r = 1"
+    document.getElementById("text7").innerHTML = "public key = " + publickey + "(public key = [e,n]"
+    document.getElementById("text8").innerHTML = "private key = " + privatekey + "(private key = [d,n]"
 }
 
 function checkForKeysEnc() {
@@ -92,7 +92,7 @@ function encrypt() {
    const lettersMessage = document.getElementById(messageinput).value
    const MessageToNumbers = (a) => {
     a = text.charCodeAt(0) //convert string of letters to numbers
-    let code = text.charCodeAt(text.length-1);
+    let code = text.charCodeAt(text.length-1); 
    }
    
 }
@@ -101,5 +101,5 @@ function decrypt() {
 
 }
 
-test
+
 
