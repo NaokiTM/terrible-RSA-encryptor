@@ -11,12 +11,13 @@
 <body>
     <div class="jumbotron">
         <div class="container">
-            <h1 id = "title" class = "text">Naoki's RSA encryption calculator</h1>
-            <a href = "generate.html" onclick = "generateKeys()">generate keys</a>
-            <a href = "encrypt.html" onclick = "checkForKeys()">encrypt</a>
-            <a href = "decrypt.html" onclick = "checkForKeys()">decrypt</a>
+            <h1 id = "title" class = "text">encrypt page</h1>
+            <textarea id = "message">enter message</textarea>
+            <button id = "encryptbutton" onclick = "encrypt()">encrypt message</button> 
         </div>
     </div>
    <script src = "index.js"></script>
 </body>
 </html>
+
+<!-- onload = "javascript:checkForKeysEnc()" -->

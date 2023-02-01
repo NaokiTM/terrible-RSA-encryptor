@@ -11,17 +11,17 @@
 <body>
     <div id = "jumbotron">
         <div id = "container">
-            <div id = "text1"></div>
-            <div id = "text2"></div>
-            <div id = "text3"></div>
-            <div id = "text4"></div>
-            <div id = "text5"></div>
-            <div id = "text6"></div>
-            <div id = "text7"></div>
-            <div id = "text8"></div>
+            <div class = "text" id = "text1"></div>
+            <div class = "text" id = "text2"></div>
+            <div class = "text" id = "text3"></div>
+            <div class = "text" id = "text4"></div>
+            <div class = "text" id = "text5"></div>
+            <div class = "text" id = "text6"></div>
+            <div class = "text" id = "text7"></div><button onclick = "copyPubKey()">copy public key</button>
+            <div class = "text" id = "text8"></div><button onclick = "copyPrivkey()">copy private key</button>
         </div>
     </div>
     <!-- when the generate html page is loaded it runs generate keys  -->
-    <script src="index.js" onload="javascript:generateKeys();"></script> 
+    <script src="index.js" onload="generateKeys();"></script> 
 </body>
 </html>
