@@ -85,9 +85,9 @@ function encrypt() {
   for (let i = 0; i < message.length; i++) { //loops to match the number of letters in the message
     numberMessage[i] = message.charCodeAt(i) //converts the letters to numbers one character at a time
     cipher[i] = numberMessage[i]^e % n; // so the first ciphered letter is the first number to the power of e % n
-    console.log(cipher[i]) //outputs the cipher one letter at a time 
+    // console.log(cipher[i]) //outputs the cipher one letter at a time 
   }    
-
+  document.getElementById("cipheroutput").innerHTML(cipher)
 }
 
 function decrypt() {
@@ -98,7 +98,8 @@ function decrypt() {
   for (let i = 0; i < cipher.length; i++) { //loops to match the length of the cipher
     numbercipher[i] = message.charCodeAt(i) //converts the letters to numbers one character at a time
     cipher[i] = numberMessage[i]^e % n; // so the first encrypted character is the first number to the power of e % n
-    console.log(message[i])
+    // console.log(message[i]) //prints each individual letter from the message
+    document.getElementById("messageoutput").innerHTML(message)
   } 
 }
 

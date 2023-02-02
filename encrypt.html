@@ -12,12 +12,11 @@
     <div class="jumbotron">
         <div class="container">
             <h1 id = "title" class = "text">encrypt page</h1>
-            <textarea id = "message">enter message</textarea>
+            <textarea id = "message">enter message</textarea> 
             <button id = "encryptbutton" onclick = "encrypt()">encrypt message</button> 
+            <div id = "cipheroutput"></div>
         </div>
     </div>
-   <script src = "index.js" onload = "checkForKeysEnc()"></script>
+   <script src = "index.js" onload = "javascript:checkForKeysEnc()"></script>
 </body>
 </html>
-
-<!-- onload = "javascript:checkForKeysEnc()" -->
