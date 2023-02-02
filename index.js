@@ -85,13 +85,12 @@ function encrypt() {
   for (let i = 0; i < message.length; i++) { //loops to match the number of letters in the message
     numberMessage[i] = message.charCodeAt(i) //converts the letters to numbers one character at a time
     cipher[i] = numberMessage[i]^e % n; // so the first ciphered letter is the first number to the power of e % n
-    console.log(cipher[i]) //outputs the cipher
+    console.log(cipher[i]) //outputs the cipher one letter at a time 
   }    
-   
+
 }
 
 function decrypt() {
-
   let cipher = document.getElementById("cipher").value //takes the value inside the cipher tag
   let numbercipher = [] //this is required to convert letters to numbers before encrypting them
   let message = []
@@ -101,10 +100,6 @@ function decrypt() {
     cipher[i] = numberMessage[i]^e % n; // so the first encrypted character is the first number to the power of e % n
     console.log(message[i])
   } 
-}
-
-function CheckForKeysEnc() {
-    
 }
 
 function copyPubKey() {
