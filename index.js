@@ -21,8 +21,8 @@ function generateKeys() {
     const primes = getPrimes(min, max);
     return primes[getRandomNum(0, primes.length - 1)];
     };//end of the random prime number algorithm
-
-
+    
+    
     const p = (getRandomPrime(range)); //generates p
     const q = (getRandomPrime(range)); //generates q
 
