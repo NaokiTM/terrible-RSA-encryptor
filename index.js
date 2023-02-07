@@ -1,5 +1,11 @@
 let gotpubkey = false;
 let gotprivkey = false;
+const p = 0
+const q = 0
+const e = []
+const d = 0
+const n = 0
+const r = 0
 
 function generateKeys() { 
     //generates random primes to use as p and q:
@@ -51,7 +57,7 @@ function generateKeys() {
     }
 
     const eRandomIndex = Math.floor(Math.random() * eval.length) //gets a random index from the length of the array
-    const e = eval[eRandomIndex] //selects the value from the index
+    e = eval[eRandomIndex] //selects the value from the index
 
     for (let i= 0;i <= 100000; i++ ) { //candidates for d (the value of i must be bigger than 100 for the modulo of r to work, otherwise there are not enough candidates)
         if ((i * e) % r == 1) {
@@ -61,7 +67,7 @@ function generateKeys() {
     }
 
     const dRandomIndex = Math.floor(Math.random() * dval.length)
-    const d = dval[dRandomIndex]
+    d = dval[dRandomIndex]
 
     const publickey = [e, n] 
     const privatekey = [d, n]
@@ -88,6 +94,7 @@ function encrypt() {
     // console.log(cipher[i]) //outputs the cipher one letter at a time 
   }    
   document.getElementById("cipheroutput").innerHTML(cipher)
+  console.log("this works")
 }
 
 function decrypt() {
@@ -100,42 +107,43 @@ function decrypt() {
     cipher[i] = numberMessage[i]^e % n; // so the first encrypted character is the first number to the power of e % n
     // console.log(message[i]) //prints each individual letter from the message
     document.getElementById("messageoutput").innerHTML(message)
-  } 
-}
-
-function copyPubKey() {
-    // Get the text field
-    var copyText = document.getElementById("text7");
-  
-    // Select the text field
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile devices
-  
-    //  Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-  
-    // Alert the copied text
-    alert("Copied the text: " + copyText.value);
-
-    gotpubkey = true
   }
-
-function copyPrivKey() {
-       // Get the text field
-       var copyText2 = document.getElementById("text8");
-  
-       // Select the text field
-       copyText2.select();
-       copyText2.setSelectionRange(0, 99999); // For mobile devices
-     
-        // Copy the text inside the text field
-       navigator.clipboard.writeText(copyText2.value);
-     
-       // Alert the copied text
-       alert("Copied the text: " + copyText2.value);
-
-       gotprivkey = true;
+  console.log("this works") 
 }
+
+// function copyPubKey() {
+//     // Get the text field
+//     var copyText = document.getElementById("text7");
+  
+//     // Select the text field
+//     copyText.select();
+//     copyText.setSelectionRange(0, 99999); // For mobile devices
+  
+//     //  Copy the text inside the text field
+//     navigator.clipboard.writeText(copyText.value);
+  
+//     // Alert the copied text
+//     alert("Copied the text: " + copyText.value);
+
+//     gotpubkey = true
+//   }
+
+// function copyPrivKey() {
+//        // Get the text field
+//        var copyText2 = document.getElementById("text8");
+  
+//        // Select the text field
+//        copyText2.select();
+//        copyText2.setSelectionRange(0, 99999); // For mobile devices
+     
+//         // Copy the text inside the text field
+//        navigator.clipboard.writeText(copyText2.value);
+     
+//        // Alert the copied text
+//        alert("Copied the text: " + copyText2.value);
+
+//        gotprivkey = true;
+// }
 
 function checkForKeysEnc() {
   if (gotpubkey == true && gotprivkey == true) {
@@ -152,3 +160,4 @@ function checkForKeysDec() {
     console.error("copy the private and public keys first by pressing the copy buttons")
   }
 }
+
