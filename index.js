@@ -1,11 +1,11 @@
-let gotpubkey = false;
-let gotprivkey = false;
-const p = 0
-const q = 0
-const e = []
-const d = 0
-const n = 0
-const r = 0
+// let gotpubkey = false;
+// let gotprivkey = false;
+let e = null;
+let d = null;
+let p = null;
+let n = null;
+let q = null;
+let r = null;
 
 function generateKeys() { 
     //generates random primes to use as p and q:
@@ -29,11 +29,11 @@ function generateKeys() {
     };//end of the random prime number algorithm
     
     
-    const p = (getRandomPrime(range)); //generates p
-    const q = (getRandomPrime(range)); //generates q
+    p = (getRandomPrime(range)); //generates p
+    q = (getRandomPrime(range)); //generates q
 
-    const n = p*q  //defines n
-    const r = (p-1) * (q-1) //defines r
+    n = p*q  //defines n
+    r = (p-1) * (q-1) //defines r
 
     const areCoprimes = (num1, num2) => { //the algorithm used to check if 2 numbers are coprime
         const smaller = num1 > num2 ? num1 : num2;
@@ -93,7 +93,8 @@ function encrypt() {
     cipher[i] = numberMessage[i]^e % n; // so the first ciphered letter is the first number to the power of e % n
     // console.log(cipher[i]) //outputs the cipher one letter at a time 
   }    
-  document.getElementById("cipheroutput").innerHTML(cipher)
+  cipher = 
+  document.getElementById("cipheroutput").innerHTML = (cipher + "lol this work")
   console.log("this works")
 }
 
@@ -145,19 +146,19 @@ function decrypt() {
 //        gotprivkey = true;
 // }
 
-function checkForKeysEnc() {
-  if (gotpubkey == true && gotprivkey == true) {
-    encrypt()
-  } else {
-    console.error("copy the private and public keys first by pressing the copy buttons")
-  }
-}
+// function checkForKeysEnc() {
+//   if (gotpubkey == true && gotprivkey == true) {
+//     encrypt()
+//   } else {
+//     console.error("copy the private and public keys first by pressing the copy buttons")
+//   }
+// }
 
-function checkForKeysDec() {
-  if (gotpubkey == true && gotprivkey == true) {
-    decrypt()
-  } else {
-    console.error("copy the private and public keys first by pressing the copy buttons")
-  }
-}
+// function checkForKeysDec() {
+//   if (gotpubkey == true && gotprivkey == true) {
+//     decrypt()
+//   } else {
+//     console.error("copy the private and public keys first by pressing the copy buttons")
+//   }
+// }
 //covk
