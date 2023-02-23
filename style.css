@@ -1,3 +1,11 @@
 .text { 
     font-family: 'Times New Roman', Times, serif;
 }
+
+.link-dark .focus{
+    color: grey !important;
+}
+
+.link-dark .hover {
+    color: black !important;
+}
