@@ -1,10 +1,16 @@
-let gotpubkey = false;
-let gotprivkey = false;
+// let gotpubkey = false;
+// let gotprivkey = false;
+let e = null; //no particular data type
+let d = null;
+let p = null;
+let n = null;
+let q = null;
+let r = null;
 
 function generateKeys() { 
     //generates random primes to use as p and q:
     //console.log('generate keys')
-    const range = [1, 400]; //changing the range makes the numbers enormous and need to change range in the d and e variables
+    const range = [2, 400]; //changing the range makes the numbers enormous and need to change range in the d and e variables
     const getPrimes = (min, max) => {
     const result = Array(max + 1)
     .fill(0)
@@ -23,11 +29,13 @@ function generateKeys() {
     };//end of the random prime number algorithm
     
     
-    const p = (getRandomPrime(range)); //generates p
-    const q = (getRandomPrime(range)); //generates q
 
-    const n = p*q  //defines n
-    const r = (p-1) * (q-1) //defines r
+    
+    p = (getRandomPrime(range)); //generates p
+    q = (getRandomPrime(range)); //generates q
+
+    n = p*q  //defines n
+    r = (p-1) * (q-1) //defines r
 
     const areCoprimes = (num1, num2) => { //the algorithm used to check if 2 numbers are coprime
         const smaller = num1 > num2 ? num1 : num2;
@@ -40,7 +48,7 @@ function generateKeys() {
         };
         return true;
      };
-
+    
     let eval = [] //defines array for all possible values for e between 2 limits
     let dval = [] //deifines array for all possible values for d between 2 limits
 
@@ -51,7 +59,7 @@ function generateKeys() {
     }
 
     const eRandomIndex = Math.floor(Math.random() * eval.length) //gets a random index from the length of the array
-    const e = eval[eRandomIndex] //selects the value from the index
+    e = eval[eRandomIndex] //selects the value from the index
 
     for (let i= 0;i <= 100000; i++ ) { //candidates for d (the value of i must be bigger than 100 for the modulo of r to work, otherwise there are not enough candidates)
         if ((i * e) % r == 1) {
@@ -61,33 +69,102 @@ function generateKeys() {
     }
 
     const dRandomIndex = Math.floor(Math.random() * dval.length)
-    const d = dval[dRandomIndex]
+    d = dval[dRandomIndex]
 
     const publickey = [e, n] 
     const privatekey = [d, n]
     
-    document.getElementById("text1").innerHTML = "value of p = " + p
-    document.getElementById("text2").innerHTML = "value of q = " + q
-    document.getElementById("text3").innerHTML = "value of n = " + n + " (value of n = p*q"
-    document.getElementById("text4").innerHTML = "value of r = " + r + " (value of r = (p-1) * (q-1)"
-    document.getElementById("text5").innerHTML = "value of e = " + e + " (e must be 1 < e < r and e and r are coprime"
-    document.getElementById("text6").innerHTML = "value of d = " + d + " (d must follow (d * e) % r = 1"
-    document.getElementById("text7").innerHTML = "public key = " + publickey + " (public key = [e,n]" 
-    document.getElementById("text8").innerHTML = "private key = " + privatekey + " (private key = [d,n]"
+    //asynchronous meaning that other script is executed even if there is a timer
+
+    setTimeout(() => { //makes it look like its thinking but in reality it is almost instantaenous
+      document.getElementById("text1").innerHTML = "value of p = " + p
+    },"500")
+
+    setTimeout(() => {
+      document.getElementById("text2").innerHTML = "value of q = " + q
+    },"1000")
+
+    setTimeout(() => {
+      document.getElementById("text3").innerHTML = "value of n = " + n + " (value of n = p*q)"
+    },"1500")
+
+    setTimeout(() => {
+      document.getElementById("text4").innerHTML = "value of r = " + r + " (value of r = (p-1) * (q-1)"
+    },"2000")
+
+    setTimeout(() => {
+      document.getElementById("text5").innerHTML = "value of e = " + e + " (e must be 1 < e < r and e and r are coprime"
+    },"2500")
+
+    setTimeout(() => {
+      document.getElementById("text6").innerHTML = "value of d = " + d + " (d must follow (d * e) % r = 1"
+    },"3000")
+
+    setTimeout(() => {
+      document.getElementById("text7").innerHTML = "public key = " + publickey + " (public key = [e,n]" 
+    },"3500")
+
+    setTimeout(() => {
+      document.getElementById("text8").innerHTML = "private key = " + privatekey + " (private key = [d,n]"
+    },"4000")
+
+    setTimeout(() => {
+      createButtonPub();
+    },"4500")
+
+    setTimeout(() => {
+      createButtonPriv();
+    },"4500")
+
 }
+
+function createButtonPub() {
+      // 1. Create the button
+    var button = document.createElement("button");
+    button.innerHTML = "copy public";
+
+    // 2. Append somewhere
+    var body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
+
+    // 3. Add event handler
+    button.addEventListener ("click", function() {
+      copyPubKey()
+      alert("copied public key");
+    });
+
+}
+
+function createButtonPriv() { 
+      var button = document.createElement("button");
+      button.innerHTML = "copy private";
+
+      var body = document.getElementsByTagName("body")[0];
+      body.appendChild(button);
+
+      button.addEventListener("click", function() {
+      copyPrivKey()
+      alert("copied private key");
+      })
+}
+
 
 function encrypt() {
 
   let message = document.getElementById("message").value
   let numberMessage = []
   let cipher = []
+  let eNew = document.getElementById("einput").value
 
   for (let i = 0; i < message.length; i++) { //loops to match the number of letters in the message
     numberMessage[i] = message.charCodeAt(i) //converts the letters to numbers one character at a time
-    cipher[i] = numberMessage[i]^e % n; // so the first ciphered letter is the first number to the power of e % n
+    cipher[i] = numberMessage[i]^eNew % n; // so the first ciphered letter is the first number to the power of e % n
     // console.log(cipher[i]) //outputs the cipher one letter at a time 
+    document.getElementById("messageoutput")
   }    
-  document.getElementById("cipheroutput").innerHTML(cipher)
+  
+  document.getElementById("cipheroutput").innerHTML = (cipher)
+  console.log("this works")
 }
 
 function decrypt() {
@@ -99,8 +176,9 @@ function decrypt() {
     numbercipher[i] = message.charCodeAt(i) //converts the letters to numbers one character at a time
     cipher[i] = numberMessage[i]^e % n; // so the first encrypted character is the first number to the power of e % n
     // console.log(message[i]) //prints each individual letter from the message
-    document.getElementById("messageoutput").innerHTML(message)
-  } 
+    document.getElementById("messageoutput").innerHTML(message.toString)
+  }
+  console.log("this works") 
 }
 
 function copyPubKey() {
@@ -116,8 +194,6 @@ function copyPubKey() {
   
     // Alert the copied text
     alert("Copied the text: " + copyText.value);
-
-    gotpubkey = true
   }
 
 function copyPrivKey() {
@@ -133,8 +209,6 @@ function copyPrivKey() {
      
        // Alert the copied text
        alert("Copied the text: " + copyText2.value);
-
-       gotprivkey = true;
 }
 
 function checkForKeysEnc() {
@@ -152,4 +226,53 @@ function checkForKeysDec() {
     console.error("copy the private and public keys first by pressing the copy buttons")
   }
 }
-//covk
+
+function login() {
+  var credentials = [
+    { // Object @ 0 index
+      username: "sam",
+      password: "javascript"
+    },
+    { // Object @ 1 index
+      username: "matt",
+      password: "random"
+    },
+    { // Object @ 2 index
+      username: "chris",
+      password: "forever"
+    }
+  
+  ]
+
+	let username = document.getElementById('usernameInput').value
+	let password = document.getElementById('passwordInput').value
+
+  console.log("your username is " + username + "and your password is " + password)
+
+	for(var i = 0; i < credentials.length; i++) { //loops to find a username and password that matches
+  
+		if(username == credentials[i].username && password == credentials[i].password /*&& i <= 5*/) { //i can be used twice here because the same numbers is used to store the index of both the username and password.
+			console.log(username + " is logged in!!!")
+      window.location.href = "./menu.html" //switches to the menu if the credentials are correct
+			// stop the function if this is found to be true
+			return
+    
+		}// else if (i > 5) {
+    //   document.getElementById("invalidmsg").innerHTML = "5 invalid login attempts, next login attempt in 20 seconds"
+    //   wait(20000)
+    
+    // }
+	}
+
+	// console.log("incorrect username or password")
+  document.getElementById("invalidmsg").innerHTML = "invalid login!, try again"
+}
+
+function togglePassword() {
+  var x = document.getElementById("passwordInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
