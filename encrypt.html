@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>encrypt</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            
+            <h1 id = "title" class = "text">encrypt page</h1>
+            <div class = "text" id = "messageinput">enter message below:</div>
+            <input id = "message"></input> 
+            <div class = "text" id = "einput">enter value of e below:</div>
+            <input id = "einput"></input>
+            <button id = "encryptbutton" onclick = "encrypt()">encrypt message</button> 
+            <div id = "cipheroutput"></div>
+        </div>
+    </div>
+   <script src = "index.js"></script>
+   <!-- onload = "javascript:checkForKeysEnc()" -->
+</body>
+</html>
