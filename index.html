@@ -13,9 +13,10 @@
         <div class="container">
             <h1 >login</h1>
             <div>username:</div>
-            <input id = "username"></input>
+            <input id = "usernameInput"></input>
             <div>password:</div>
-            <input id = "password"></input>
+            <input type = "password" id = "passwordInput"></input>
+            <input type = "checkbox" onclick = "togglePassword()">show password</input>
             <button onclick = "login()">login</button>
             <div id = "invalidmsg"></div>
         </div>

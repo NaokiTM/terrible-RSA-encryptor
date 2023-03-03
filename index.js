@@ -29,6 +29,8 @@ function generateKeys() {
     };//end of the random prime number algorithm
     
     
+
+    
     p = (getRandomPrime(range)); //generates p
     q = (getRandomPrime(range)); //generates q
 
@@ -46,7 +48,7 @@ function generateKeys() {
         };
         return true;
      };
-
+    
     let eval = [] //defines array for all possible values for e between 2 limits
     let dval = [] //deifines array for all possible values for d between 2 limits
 
@@ -242,11 +244,8 @@ function login() {
   
   ]
 
-	let username = document.getElementById('username').value
-	let password = document.getElementById('password').value
-
-  username = username
-  password = password
+	let username = document.getElementById('usernameInput').value
+	let password = document.getElementById('passwordInput').value
 
   console.log("your username is " + username + "and your password is " + password)
 
@@ -267,4 +266,13 @@ function login() {
 
 	// console.log("incorrect username or password")
   document.getElementById("invalidmsg").innerHTML = "invalid login!, try again"
+}
+
+function togglePassword() {
+  var x = document.getElementById("passwordInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
 }
