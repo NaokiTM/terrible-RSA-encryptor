@@ -152,3 +152,4 @@ function checkForKeysDec() {
     console.error("copy the private and public keys first by pressing the copy buttons")
   }
 }
+//covk
