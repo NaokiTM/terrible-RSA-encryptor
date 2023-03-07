@@ -36,7 +36,7 @@ function generateKeys() {
 
     n = p*q  //defines n
     r = (p-1) * (q-1) //defines r
-
+  
     const areCoprimes = (num1, num2) => { //the algorithm used to check if 2 numbers are coprime
         const smaller = num1 > num2 ? num1 : num2;
         for(let ind = 2; ind < smaller; ind++){
@@ -247,7 +247,7 @@ function login() {
 	let username = document.getElementById('usernameInput').value
 	let password = document.getElementById('passwordInput').value
 
-  console.log("your username is " + username + "and your password is " + password)
+  console.log("you  <a href = "menu.html">back to main menu</a>r username is " + username + "and your password is " + password)
 
 	for(var i = 0; i < credentials.length; i++) { //loops to find a username and password that matches
   
