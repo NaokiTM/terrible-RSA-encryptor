@@ -247,7 +247,7 @@ function login() {
 	let username = document.getElementById('usernameInput').value
 	let password = document.getElementById('passwordInput').value
 
-  console.log("you  <a href = "menu.html">back to main menu</a>r username is " + username + "and your password is " + password)
+  console.log("your username is " + username + "and your password is " + password)
 
 	for(var i = 0; i < credentials.length; i++) { //loops to find a username and password that matches
   
