@@ -71,7 +71,7 @@ d = dval[dRandomIndex]
 const publickey = [e, n] 
 const privatekey = [d, n]
 
-function generateKeys() { 
+function printKeys() { 
     //generates random primes to use as p and q:
     //console.log('generate keys')
     
