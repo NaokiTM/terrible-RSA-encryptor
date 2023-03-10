@@ -7,72 +7,73 @@ let n = null;
 let q = null;
 let r = null;
 
+const range = [2, 400]; //changing the range makes the numbers enormous and need to change range in the d and e variables
+const getPrimes = (min, max) => {
+const result = Array(max + 1)
+.fill(0)
+.map((_, i) => i);
+for (let i = 2; i <= Math.sqrt(max + 1); i++) {
+    for (let j = i ** 2; j < max + 1; j += i) delete result[j];
+}
+return Object.values(result.slice(min));
+};
+const getRandomNum = (min, max) => {
+return Math.floor(Math.random() * (max - min + 1) + min);
+};
+const getRandomPrime = ([min, max]) => {
+const primes = getPrimes(min, max);
+return primes[getRandomNum(0, primes.length - 1)];
+};//end of the random prime number algorithm
+
+
+
+
+p = (getRandomPrime(range)); //generates p
+q = (getRandomPrime(range)); //generates q
+
+n = p*q  //defines n
+r = (p-1) * (q-1) //defines r
+
+const areCoprimes = (num1, num2) => { //the algorithm used to check if 2 numbers are coprime
+    const smaller = num1 > num2 ? num1 : num2;
+    for(let ind = 2; ind < smaller; ind++){
+       const condition1 = num1 % ind === 0;
+       const condition2 = num2 % ind === 0;
+       if(condition1 && condition2){
+          return false;
+       };
+    };
+    return true;
+ };
+
+let eval = [] //defines array for all possible values for e between 2 limits
+let dval = [] //deifines array for all possible values for d between 2 limits
+
+for (let x= 0;x <= 10000; x++) { //prints all possible candidates for e between 1 and 100: make the range bigger later
+   if (1 < x < r && areCoprimes(x, r) == true) {
+    eval.push(x)
+   }
+}
+
+const eRandomIndex = Math.floor(Math.random() * eval.length) //gets a random index from the length of the array
+e = eval[eRandomIndex] //selects the value from the index
+
+for (let i= 0;i <= 100000; i++ ) { //candidates for d (the value of i must be bigger than 100 for the modulo of r to work, otherwise there are not enough candidates)
+    if ((i * e) % r == 1) {
+        // console.log("pushing",i,"to dval")
+        dval.push(i)
+    }
+}
+
+const dRandomIndex = Math.floor(Math.random() * dval.length)
+d = dval[dRandomIndex]
+
+const publickey = [e, n] 
+const privatekey = [d, n]
+
 function generateKeys() { 
     //generates random primes to use as p and q:
     //console.log('generate keys')
-    const range = [2, 400]; //changing the range makes the numbers enormous and need to change range in the d and e variables
-    const getPrimes = (min, max) => {
-    const result = Array(max + 1)
-    .fill(0)
-    .map((_, i) => i);
-    for (let i = 2; i <= Math.sqrt(max + 1); i++) {
-        for (let j = i ** 2; j < max + 1; j += i) delete result[j];
-    }
-    return Object.values(result.slice(min));
-    };
-    const getRandomNum = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-    };
-    const getRandomPrime = ([min, max]) => {
-    const primes = getPrimes(min, max);
-    return primes[getRandomNum(0, primes.length - 1)];
-    };//end of the random prime number algorithm
-    
-    
-
-    
-    p = (getRandomPrime(range)); //generates p
-    q = (getRandomPrime(range)); //generates q
-
-    n = p*q  //defines n
-    r = (p-1) * (q-1) //defines r
-  
-    const areCoprimes = (num1, num2) => { //the algorithm used to check if 2 numbers are coprime
-        const smaller = num1 > num2 ? num1 : num2;
-        for(let ind = 2; ind < smaller; ind++){
-           const condition1 = num1 % ind === 0;
-           const condition2 = num2 % ind === 0;
-           if(condition1 && condition2){
-              return false;
-           };
-        };
-        return true;
-     };
-    
-    let eval = [] //defines array for all possible values for e between 2 limits
-    let dval = [] //deifines array for all possible values for d between 2 limits
-
-    for (let x= 0;x <= 10000; x++) { //prints all possible candidates for e between 1 and 100: make the range bigger later
-       if (1 < x < r && areCoprimes(x, r) == true) {
-        eval.push(x)
-       }
-    }
-
-    const eRandomIndex = Math.floor(Math.random() * eval.length) //gets a random index from the length of the array
-    e = eval[eRandomIndex] //selects the value from the index
-
-    for (let i= 0;i <= 100000; i++ ) { //candidates for d (the value of i must be bigger than 100 for the modulo of r to work, otherwise there are not enough candidates)
-        if ((i * e) % r == 1) {
-            // console.log("pushing",i,"to dval")
-            dval.push(i)
-        }
-    }
-
-    const dRandomIndex = Math.floor(Math.random() * dval.length)
-    d = dval[dRandomIndex]
-
-    const publickey = [e, n] 
-    const privatekey = [d, n]
     
     //asynchronous meaning that other script is executed even if there is a timer
 
@@ -158,12 +159,14 @@ function encrypt() {
 
   for (let i = 0; i < message.length; i++) { //loops to match the number of letters in the message
     numberMessage[i] = message.charCodeAt(i) //converts the letters to numbers one character at a time
-    cipher[i] = numberMessage[i]^eNew % n; // so the first ciphered letter is the first number to the power of e % n
+    cipher[i] = numberMessage[i]**eNew % n; // so the first ciphered letter is the first number to the power of e % n
     // console.log(cipher[i]) //outputs the cipher one letter at a time 
+    console.log(eNew,n,numberMessage[i])
     document.getElementById("messageoutput")
   }    
   
-  document.getElementById("cipheroutput").innerHTML = (cipher)
+  console.log(cipher)
+  document.getElementById("cipheroutput").innerText = cipher.join(",")
   console.log("this works")
 }
 
